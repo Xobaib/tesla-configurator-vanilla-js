@@ -45,9 +45,9 @@
                 <h2 class="text-xl font-light text-center">Customize Your Car</h2>
                 <!-- Exterior Buttons -->
                  <div class="my-8" id="exterior-buttons">
-                    <h3 class="font-semibold-mb-2">Exterior Color</h3>
+                    <h3 class="font-semibold mb-2">Exterior Color</h3>
                     <div class="flex space-x-4">
-                        <button class="transition-transform duration-300 hover:scale-110">
+                        <button class=" btn-selected transition-transform duration-300 hover:scale-110">
                             <img src="./images/button-stealth-grey.avif" alt="Stealth Grey" class="w-22">
                         </button>
                         <button class="transition-transform duration-300 hover:scale-110">
@@ -67,6 +67,26 @@
                         </button>
                     </div>
                  </div>
+
+                 <!-- Interior Buttons -->
+                  <div class="my-8" id="interior-buttons">
+                    <h3 class="font-semibold mb-2">Interior Color</h3>
+                    <div class="flex space-x-4">
+                        <button class="btn-selected transition-transform duration-300 hover:scale-110">
+                            <img src="./images/button-dark.avif" alt="Dark" class="w-12">
+                        </button>
+                        <button class="transition-transform duration-300 hover:scale-110">
+                            <img src="./images/button-light.avif" alt="Light" class="w-12">
+                        </button>
+                    </div>
+                  </div>
+
+                  <!-- Wheel Buttons -->
+                   <div class="mb-8" id="wheel-buttons">
+                    <h3 class="font-semibold mb-2">Wheels</h3>
+                    <button class="w-full py-4 mb-2 bg-gray-700 text-white rounded-lg transition-colors duration-300 hover:bg-gray-600 hover:text-white">Standard Wheels</button>
+                    <button class="w-full py-4 mb-2 bg-gray-200 rounded-lg transition-colors duration-300 hover:bg-gray-700 hover:text-white">Performance Wheels (+$2,500)</button>
+                   </div>
              </aside>
           </main>
         <script src="./js/main.js"></script>
