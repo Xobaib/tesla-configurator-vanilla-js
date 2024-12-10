@@ -6,6 +6,21 @@ const interiorImage = document.getElementById("interior-image");
 
 // console.log(exteriorColorSection);
 
+// Image Mapping
+const exteriorImages = {
+    "Stealth Grey": './images/model-y-stealth-grey-performance.jpg',
+    "Pearl White": "./images/model-y-pearl-white.jpg",
+    "Deep Blue": "./images/model-y-deep-blue-metallic.jpg",
+    "Solid Black": "./images/model-y-solid-black.jpg",
+    "Ultra Red": "./images/model-y-ultra-red.jpg",
+    "Quicksilver": "./images/model-y-quicksilver.jpg",
+};
+
+const interiorImages = {
+    "Dark": "./images/model-y-interior-dark.jpg",
+    "Light": "./images/model-y-interior-light.jpg",
+};
+
 
 // Handle Top Bar On Scroll
 function handleScroll() {
