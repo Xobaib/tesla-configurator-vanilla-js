@@ -8,7 +8,7 @@ const interiorImage = document.getElementById("interior-image");
 
 // Image Mapping
 const exteriorImages = {
-    "Stealth Grey": './images/model-y-stealth-grey-performance.jpg',
+    "Stealth Grey": './images/model-y-stealth-grey.jpg',
     "Pearl White": "./images/model-y-pearl-white.jpg",
     "Deep Blue": "./images/model-y-deep-blue-metallic.jpg",
     "Solid Black": "./images/model-y-solid-black.jpg",
@@ -66,6 +66,18 @@ function handleColorButtonClick(event) {
         // Bard Way
         // buttons.forEach(btn => btn.classList.remove("btn-selected"));
         // button.classList.add("btn-selected");
+
+        // Change Exterior Image
+        if(event.currentTarget === exteriorColorSection) {
+            const alt = button.querySelector("img").alt;
+            exteriorImage.src = exteriorImages[alt];
+        }
+
+        // Change Interior Image
+        if(event.currentTarget === interiorColorSection) {
+            const alt = button.querySelector("img").alt;
+            interiorImage.src = interiorImages[alt];
+        }
     }
 }
 
