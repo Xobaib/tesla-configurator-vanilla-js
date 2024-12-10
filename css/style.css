@@ -8,3 +8,35 @@
 .btn-selected:hover {
     transform: scale(1) !important;
 }
+
+/* My Way for Animating the TopBar: */ 
+.goUpAnimate {
+    animation: topBarGoUp 1s forwards;
+}
+
+.comeDownAnimate {
+    animation: topBarComeDown 0.5s forwards;
+}
+
+@keyframes topBarGoUp{
+    from { transform: translateY(0px) }
+    to { transform: translateY(-80px) }
+}
+
+@keyframes topBarComeDown{
+    from { transform: translateY(-80px) }
+    to { transform: translateY(0px) }
+}
+
+/* Brad Way for Animating the TopBar: */ 
+/* #top-bar {
+    transition: transform 0.5s ease-in-out;
+}
+
+.comeDownAnimate {
+    transform: translateY(0);
+}
+
+.goUpAnimate {
+    transform: translateY(-100%);
+} */
