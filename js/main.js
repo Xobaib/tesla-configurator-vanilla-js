@@ -24,7 +24,7 @@ const interiorImages = {
 };
 
 const basePrice = 52490;
-const currentPrice = basePrice;
+let currentPrice = basePrice;
 
 const pricing = {
     'Performance Wheels': 2500,
@@ -135,6 +135,8 @@ function handleWheelButtonClick(event) {
         // Brad Way To Keep Selected Color When Select Performance Wheels:
         selectedOptions['Performance Wheels'] = event.target.textContent.includes("Performance");
         updateExteriorImage();
+
+        updateTotalPrice();
     }
 }
 
@@ -148,6 +150,10 @@ function handlePerformanceButtonClick() {
 function updateTotalPrice() {
     // Reset current price to base price
     currentPrice = basePrice;
+
+    if(selectedOptions['Performance Wheels']) {
+        currentPrice += pricing['Performance Wheels'];
+    }
 
     // Update total price in UI
     totalPriceElement.textContent = `$${currentPrice.toLocaleString()}`;
