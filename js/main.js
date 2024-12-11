@@ -10,10 +10,7 @@ const fullSelfDrivingCheckbox = document.getElementById("full-self-driving-check
 const accessoryCheckboxes = document.querySelectorAll(".accessory-form-checkbox");
 const downPaymentElement = document.getElementById('down-payment');
 const monthlyPaymentElement = document.getElementById('monthly-payment');
-// console.log(wheelbuttonsSection);
 
-
-// accessoryCheckboxes.forEach(accessory => console.log(accessory.closest('span').previousElementSibling.textContent));
 
 // Image Mapping
 const exteriorImages = {
@@ -135,7 +132,10 @@ function updateExteriorImage() {
 function handleWheelButtonClick(event) {
     if(event.target.tagName === "BUTTON") {
         const buttons = document.querySelectorAll("#wheel-buttons button");
-        buttons.forEach(btn => btn.classList.remove("bg-gray-700", "text-white"));
+        buttons.forEach(btn => {
+            btn.classList.remove("bg-gray-700", "text-white");
+            btn.classList.add("bg-gray-200");
+        });
 
         // Add Selected Styles To Button
         event.target.classList.add("bg-gray-700", "text-white");
