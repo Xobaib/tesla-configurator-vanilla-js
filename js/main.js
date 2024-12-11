@@ -5,7 +5,8 @@ const exteriorImage = document.getElementById("exterior-image");
 const interiorImage = document.getElementById("interior-image");
 const wheelbuttonsSection = document.getElementById("wheel-buttons");
 const performanceBtn = document.getElementById("performance-btn");
-console.log(performanceBtn);
+const totalPriceElement = document.getElementById("total-price");
+// console.log(totalPriceElement);
 
 // Image Mapping
 const exteriorImages = {
@@ -21,6 +22,20 @@ const interiorImages = {
     "Dark": "./images/model-y-interior-dark.jpg",
     "Light": "./images/model-y-interior-light.jpg",
 };
+
+const basePrice = 52490;
+const currentPrice = basePrice;
+
+const pricing = {
+    'Performance Wheels': 2500,
+    'Preformance Package': 5000,
+    'Full Self-Driving': 8500,
+    'Accessories': {
+        'Center Console Trays': 35,
+        'Sunshade': 105,
+        'All-Weather Interior Liners': 255,
+    }
+}
 
 // My Way To Keep Selected Color When Select Performance Wheels:
 // let currentSelectedColor = "model-y-stealth-grey";
@@ -127,6 +142,15 @@ function handleWheelButtonClick(event) {
 function handlePerformanceButtonClick() {
     performanceBtn.classList.toggle("bg-gray-700");
     performanceBtn.classList.toggle("text-white");
+}
+
+// Update Total Price in The UI
+function updateTotalPrice() {
+    // Reset current price to base price
+    currentPrice = basePrice;
+
+    // Update total price in UI
+    totalPriceElement.textContent = `$${currentPrice.toLocaleString()}`;
 }
 
 // Event Listeners
