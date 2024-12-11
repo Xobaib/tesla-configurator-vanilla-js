@@ -4,7 +4,8 @@ const interiorColorSection = document.getElementById("interior-buttons");
 const exteriorImage = document.getElementById("exterior-image");
 const interiorImage = document.getElementById("interior-image");
 const wheelbuttonsSection = document.getElementById("wheel-buttons");
-// console.log(exteriorColorSection);
+const performanceBtn = document.getElementById("performance-btn");
+console.log(performanceBtn);
 
 // Image Mapping
 const exteriorImages = {
@@ -122,10 +123,18 @@ function handleWheelButtonClick(event) {
     }
 }
 
+// Performance Package Selection
+function handlePerformanceButtonClick() {
+    performanceBtn.classList.toggle("bg-gray-700");
+    performanceBtn.classList.toggle("text-white");
+}
 
+// Event Listeners
 window.addEventListener("scroll", () => requestAnimationFrame(handleScroll));
 
 exteriorColorSection.addEventListener('click', handleColorButtonClick);
 interiorColorSection.addEventListener('click', handleColorButtonClick);
 
 wheelbuttonsSection.addEventListener("click", handleWheelButtonClick);
+
+performanceBtn.addEventListener('click', handlePerformanceButtonClick);
