@@ -8,6 +8,8 @@ const performanceBtn = document.getElementById("performance-btn");
 const totalPriceElement = document.getElementById("total-price");
 const fullSelfDrivingCheckbox = document.getElementById("full-self-driving-checkbox");
 const accessoryCheckboxes = document.querySelectorAll(".accessory-form-checkbox");
+const downPaymentElement = document.getElementById('down-payment');
+const monthlyPaymentElement = document.getElementById('monthly-payment');
 // console.log(wheelbuttonsSection);
 
 
@@ -212,6 +214,8 @@ function updateTotalPrice() {
 
     // Update total price in UI
     totalPriceElement.textContent = `$${currentPrice.toLocaleString()}`;
+
+    updatePaymentBreakdown();
 }
 
 // Full Self Driving Selection
@@ -237,7 +241,37 @@ function fullSelfDrivingChange() {
 // Handle Accessory Checkbox Listeners
 accessoryCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener('change', () => updateTotalPrice());
-})
+});
+
+
+// Update Payment Breakdown Based on Current Price
+function updatePaymentBreakdown() {
+    // Calculate down payment
+    const downPayment = currentPrice * 0.1;
+    downPaymentElement.textContent = `$${downPayment.toLocaleString()}`;
+
+    // Calculate loan details (assuming 60-month loan and 3% interest rate)
+    const loanTermMonths = 60;
+    const interestRate = 0.03;
+
+    const loanAmount = currentPrice - downPayment;
+
+    // My Way to Calculate Monthly payment:
+    const monthlyInterestRate = interestRate / 12;
+
+    const monthlyPayment = (loanAmount * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -loanTermMonths));
+
+    // Brad Way to Calculate Monthly payment:
+    //     Monthly payment formula: P * (r(1+r)^n) / ((1+r)^n - 1)
+//   const monthlyInterestRate = interestRate / 12;
+
+//   const monthlyPayment = (loanAmount * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTermMonths))) / (Math.pow(1 + monthlyInterestRate, loanTermMonths) - 1);
+
+    monthlyPaymentElement.textContent = `$${monthlyPayment.toFixed(2).toLocaleString()}`;   
+}
+
+// Initial Update Total Price
+updateTotalPrice();
 
 // Event Listeners
 window.addEventListener("scroll", () => requestAnimationFrame(handleScroll));
