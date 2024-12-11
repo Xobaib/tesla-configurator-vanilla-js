@@ -142,8 +142,13 @@ function handleWheelButtonClick(event) {
 
 // Performance Package Selection
 function handlePerformanceButtonClick() {
-    performanceBtn.classList.toggle("bg-gray-700");
+    const isSelected = performanceBtn.classList.toggle("bg-gray-700");
     performanceBtn.classList.toggle("text-white");
+
+    // Update Selected Options
+    selectedOptions['Preformance Package'] = isSelected;
+
+    updateTotalPrice();
 }
 
 // Update Total Price in The UI
@@ -153,6 +158,10 @@ function updateTotalPrice() {
 
     if(selectedOptions['Performance Wheels']) {
         currentPrice += pricing['Performance Wheels'];
+    }
+
+    if(selectedOptions['Preformance Package']) {
+        currentPrice += pricing['Preformance Package'];
     }
 
     // Update total price in UI
