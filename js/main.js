@@ -21,6 +21,16 @@ const interiorImages = {
     "Light": "./images/model-y-interior-light.jpg",
 };
 
+// My Way To Keep Selected Color When Select Performance Wheels:
+// let currentSelectedColor = "model-y-stealth-grey";
+
+// Brad Way To Keep Selected Color When Select Performance Wheels:
+let selectedColor = 'Stealth Grey';
+const selectedOptions = {
+    'Performance Wheels': false,
+    'Preformance Package': false,
+    'Full Self-Driving': false,
+};
 
 // Handle Top Bar On Scroll
 function handleScroll() {
@@ -69,8 +79,11 @@ function handleColorButtonClick(event) {
 
         // Change Exterior Image
         if(event.currentTarget === exteriorColorSection) {
-            const alt = button.querySelector("img").alt;
-            exteriorImage.src = exteriorImages[alt];
+            // Brad Way To Keep Selected Color When Select Performance Wheels:
+            selectedColor = button.querySelector("img").alt;
+            updateExteriorImage();
+            // My Way To Keep Selected Color When Select Performance Wheels:
+            // currentSelectedColor = exteriorImages[alt].replace("./images/", "").replace(".jpg", "");
         }
 
         // Change Interior Image
@@ -79,6 +92,14 @@ function handleColorButtonClick(event) {
             interiorImage.src = interiorImages[alt];
         }
     }
+}
+
+// Brad Way To Keep Selected Color When Select Performance Wheels:
+// Update Exterior Image Base On Color and Wheels
+function updateExteriorImage() {
+    const performanceSuffix = selectedOptions['Performance Wheels'] ? '-performance' : '';
+    const colorKey = selectedColor in exteriorImages ? selectedColor : 'Stealth Grey';
+    exteriorImage.src = exteriorImages[colorKey].replace(".jpg", `${performanceSuffix}.jpg`);
 }
 
 // Wheel Selection
@@ -90,9 +111,14 @@ function handleWheelButtonClick(event) {
         // Add Selected Styles To Button
         event.target.classList.add("bg-gray-700", "text-white");
 
-        const selectedWheel = event.target.textContent.includes("Performance");
+        // My Way To Keep Selected Color When Select Performance Wheels:
+        // const selectedWheel = event.target.textContent.includes("Performance");
 
-        exteriorImage.src = selectedWheel ? "./images/model-y-stealth-grey-performance.jpg" : "./images/model-y-stealth-grey.jpg"
+        // exteriorImage.src = selectedWheel ? `./images/${currentSelectedColor}-performance.jpg` : `./images/${currentSelectedColor}.jpg`;
+
+        // Brad Way To Keep Selected Color When Select Performance Wheels:
+        selectedOptions['Performance Wheels'] = event.target.textContent.includes("Performance");
+        updateExteriorImage();
     }
 }
 
