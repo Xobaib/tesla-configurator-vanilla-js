@@ -1,1 +1,1 @@
-Build a Tesla Model Y Configurator interface using nothing but HTML, Tailwind CSS and JavaScript with [Brad Traversy](https://www.youtube.com/watch?v=ui0PmJtKGhQ&list=PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX&index=59)
+### Build a Tesla Model Y Configurator interface using nothing but HTML, Tailwind CSS and JavaScript with [Brad Traversy](https://www.youtube.com/watch?v=ui0PmJtKGhQ&list=PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX&index=59)
