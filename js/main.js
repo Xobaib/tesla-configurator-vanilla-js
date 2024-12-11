@@ -7,7 +7,11 @@ const wheelbuttonsSection = document.getElementById("wheel-buttons");
 const performanceBtn = document.getElementById("performance-btn");
 const totalPriceElement = document.getElementById("total-price");
 const fullSelfDrivingCheckbox = document.getElementById("full-self-driving-checkbox");
-// console.log(fullSelfDrivingCheckbox);
+const accessoryCheckboxes = document.querySelectorAll(".accessory-form-checkbox");
+// console.log(wheelbuttonsSection);
+
+
+// accessoryCheckboxes.forEach(accessory => console.log(accessory.closest('span').previousElementSibling.textContent));
 
 // Image Mapping
 const exteriorImages = {
@@ -47,6 +51,12 @@ const selectedOptions = {
     'Performance Wheels': false,
     'Preformance Package': false,
     'Full Self-Driving': false,
+    // My Way For Adding Accessory Prices:
+    // 'Accessories': {
+    //     'Center Console Trays': false,
+    //     'Sunshade': false,
+    //     'All-Weather Interior Liners': false,
+    // }
 };
 
 // Handle Top Bar On Scroll
@@ -172,6 +182,34 @@ function updateTotalPrice() {
         currentPrice += pricing['Full Self-Driving'];
     }
 
+    // My Way For Adding Accessory Prices:
+    // Accessory Options
+    // if(selectedOptions['Accessories']['All-Weather Interior Liners']) {
+    //     currentPrice += pricing['Accessories']['All-Weather Interior Liners'];
+    // }
+    // if(selectedOptions['Accessories']['Center Console Trays']) {
+    //     currentPrice += pricing['Accessories']['Center Console Trays'];
+    // }
+    // if(selectedOptions['Accessories']['Sunshade']) {
+    //     currentPrice += pricing['Accessories']['Sunshade'];
+    // }
+
+    // Brad Way For Adding Accessory Prices:
+    // Accessory Checkboxes
+    accessoryCheckboxes.forEach((checkbox) => {
+        // Extract the accessory label
+        const accessoryLabel = checkbox.closest('label').querySelector('span:nth-of-type(1)')
+        .textContent.trim();
+        
+        // Extract the accessory price
+        const accessoryPrice = pricing['Accessories'][accessoryLabel];
+        
+        // Add to current price if accessory is selected
+        if(checkbox.checked) {
+            currentPrice += accessoryPrice;
+        }
+    })
+
     // Update total price in UI
     totalPriceElement.textContent = `$${currentPrice.toLocaleString()}`;
 }
@@ -184,6 +222,23 @@ function fullSelfDrivingChange() {
     updateTotalPrice();
 }
 
+// My Way For Adding Accessory Prices:
+// Accessories Selection
+// function accessoriesChange(event) {
+//     const isAccessorySelected = event.target.checked; 
+//     const accessoryText = event.target.closest('span').previousElementSibling.textContent;
+    
+//     selectedOptions['Accessories'][`${accessoryText}`] = isAccessorySelected;
+
+//     updateTotalPrice();
+// }
+
+// Brad Way For Adding Accessory Prices:
+// Handle Accessory Checkbox Listeners
+accessoryCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', () => updateTotalPrice());
+})
+
 // Event Listeners
 window.addEventListener("scroll", () => requestAnimationFrame(handleScroll));
 
@@ -195,3 +250,8 @@ wheelbuttonsSection.addEventListener("click", handleWheelButtonClick);
 performanceBtn.addEventListener('click', handlePerformanceButtonClick);
 
 fullSelfDrivingCheckbox.addEventListener('change', fullSelfDrivingChange);
+
+// My Way For Adding Accessory Prices:
+// accessoryCheckboxes.forEach(accessoryCheckbox => {
+//     accessoryCheckbox.addEventListener('change', accessoriesChange);
+// });
